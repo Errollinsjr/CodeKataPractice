@@ -18,6 +18,7 @@ public class Calculator {
         return sum(numbers).intValue();
     }
 
+    //ensure negative numbers do not mess up calculations
     private static void ensureAllNegative(List<Integer> numbers) {
         List<Integer> negatives = filter(lessThan(0), numbers);
         if(negatives.size() > 0) {
@@ -25,6 +26,7 @@ public class Calculator {
         }
     }
 
+    //convert text, delimiters, and special characters to be used in calculator
     private static String[] numberConverter(String text) {
         if(text.isEmpty()) {
             return new String[0];
@@ -40,12 +42,14 @@ public class Calculator {
         return text.startsWith("//");
     }
 
+    //handles text numbers split by comma or new lines
     private static String[] splitUsingCommaOrNewLine(String text) {
         String[] tokens = text.split(",|\n|;|/");
 
         return tokens;
     }
 
+    //handles text numbers split by custom delimiters like slashes
     private static String[] splitUsingCustomDelimiterSyntax(String text) {
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
         m.matches();
